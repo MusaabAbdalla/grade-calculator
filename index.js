@@ -4,7 +4,7 @@ function updateResult(grade) {
 }
 
 function onInput(event) {
-  const form = event.target.form;
+  // const form = event.target.form;
   const value = Number(form.value.value);
   const total = Number(form.total.value);
   const grade = calculate(value, total);
@@ -15,11 +15,11 @@ function calculate(value = 0, total = 0) {
   if (total <= 0) {
     throw new Error('Total must be greater than zero.');
   }
-  
+
   if (value < 0 || value > total) {
     throw new Error('Value must be between 0 and the total.');
   }
-  
+
   // Calculate the percentage
   const percentage = value / total;
 
