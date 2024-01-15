@@ -4,7 +4,7 @@ function updateResult(grade) {
 }
 
 function onInput(event) {
-  // const form = event.target.form;
+  const form = event.target.form;
   const value = Number(form.value.value);
   const total = Number(form.total.value);
   const grade = calculate(value, total);
@@ -78,3 +78,5 @@ function setup() {
 }
 
 setup();
+
+console.log("Intentional Error");
