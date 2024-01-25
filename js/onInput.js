@@ -1,5 +1,5 @@
-import { calculate } from "./calculate";
-import { updateResult } from "./update";
+import { calculate } from "./calculate.js";
+import { updateResult } from "./update.js";
 export function onInput(event) {
   const form = event.target.form;
   const value = Number(form.value.value);

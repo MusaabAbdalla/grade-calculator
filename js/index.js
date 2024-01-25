@@ -1,66 +1,8 @@
-function updateResult(grade) {
-  const resultElement = document.querySelector(".grade");
-  resultElement.textContent = grade;
-}
-
-function onInput(event) {
-  const form = event.target.form;
-  const value = Number(form.value.value);
-  const total = Number(form.total.value);
-  const grade = calculate(value, total);
-  updateResult(grade);
-}
-
-function calculate(value = 0, total = 0) {
-  if (total <= 0) {
-    throw new Error("Total must be greater than zero.");
-  }
-
-  if (value < 0 || value > total) {
-    throw new Error("Value must be between 0 and the total.");
-  }
-
-  // Calculate the percentage
-  const percentage = value / total;
-
-  // Define the grade boundaries
-  const boundaries = [
-    {
-      letter: "A",
-      min: 0.9,
-    },
-    {
-      letter: "B",
-      min: 0.8,
-    },
-    {
-      letter: "C",
-      min: 0.6,
-    },
-    {
-      letter: "D",
-      min: 0.5,
-    },
-    {
-      letter: "E",
-      min: 0.4,
-    },
-    {
-      letter: "F",
-      min: 0,
-    },
-  ];
-
-  // Determine the letter grade
-  for (let i = 0; i < boundaries.length; i++) {
-    if (percentage >= boundaries[i].min) {
-      return boundaries[i].letter;
-    }
-  }
-
-  // In case no boundary is met, return 'F' as default
-  return "F";
-}
+import { updateResult } from "./update.js";
+import { calculate } from "./calculate.js";
+import { onInput } from "./onInput.js";
+import study from "./homeTask.js";
+import { study2 } from "./homeTask.js";
 
 function setup() {
   const form = document.calculator;
@@ -79,4 +21,20 @@ function setup() {
 
 setup();
 
-console.log("Intentional Error");
+// study()
+// .then(value=>{ console.log(value); return study2(100,"Python")})
+// .then(value=>{console.log(value)})
+// .catch(value=> console.error(value))
+
+async function studyProgram() {
+  try {
+    const firstStudy = await study(100, "Python");
+    console.log(firstStudy);
+    const secondStudy = await study2();
+    console.log(secondStudy);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+studyProgram();
