@@ -6,6 +6,9 @@ export function calculate(value = 0, total = 0) {
   if (value < 0 || value > total) {
     throw new Error("Value must be between 0 and the total.");
   }
+  if (typeof value !== "number" || typeof total !== "number") {
+    throw new Error("Value or Totoal must be of type number");
+  }
 
   // Calculate the percentage
   const percentage = value / total;

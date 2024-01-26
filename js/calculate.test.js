@@ -1,4 +1,5 @@
 import { calculate } from "./calculate";
+import { totalLessThanZero, valueOrtotalMustBeNumber } from "./errorList";
 // - first we should import calculate function
 
 // - We setup Test
@@ -13,6 +14,16 @@ describe("Calculate function", () => {
   });
   it("return a C for 6/10 score", () => {
     expect(calculate(6, 10)).toEqual("C");
+  });
+  it("throws an error if total is less than 0", () => {
+    expect(() => {
+      calculate(10, -10);
+    }).toThrow(totalLessThanZero);
+  });
+  it("throws an error if value or totnal are not of type number", () => {
+    expect(() => {
+      calculate("10", 10);
+    }).toThrow(valueOrtotalMustBeNumber);
   });
 });
 
